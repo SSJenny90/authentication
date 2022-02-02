@@ -1,0 +1,36 @@
+{% load sekizai_tags i18n %}
+
+<div id="createAccountModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <h3 class='modal-title'>{% trans "Create an account" %}</h3>
+        <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div id='loginModalBody' class='modal-body'>
+        <form action="/accounts/signup/" id="signupForm" method="post"> 
+          {% csrf_token %}
+          <div class="form-floating mb-3">
+            <input type="text" name="first_name" placeholder="First name" class="form-control" required="" id="id_first_name">
+            <label for="id_first_name" class="form-label requiredField">First name</label>
+          </div><div class="form-floating mb-3">
+            <input type="text" name="last_name" placeholder="Last name" class="form-control" required="" id="id_last_name">
+            <label for="id_last_name" class="form-label requiredField">Last name</label>
+          </div><div class='form-floating mb-3'>
+            <input type="email" name="email" placeholder="E-mail address" autocomplete="email" class="form-control" required="" id="id_email">
+            <label for="id_email" class="form-label requiredField">Email</label>
+          </div><div class='form-floating mb-3'>
+            <input type="password" name="password1" placeholder="Password" autocomplete="new-password" class="form-control" required="" id="id_password1"> 
+            <label for="id_password1" class="form-label requiredField">Password</label>
+          </div><div class='form-floating mb-3'>
+            <input type="password" name="password2" placeholder="Password (again)" class="form-control" required="" id="id_password2"> 
+            <label for="id_password2" class="form-label requiredField">Password (again)</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input type="submit" name="submit" value="Create account" class="btn btn-primary">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
