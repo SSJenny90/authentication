@@ -1,8 +1,9 @@
-{% load sekizai_tags i18n %}
+{% load static sekizai_tags i18n %}
 <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header bg-light">
+        <img src="{% static "collection/images/MB_logo.svg" %}" alt="" class='pe-2' style='max-height:1.5em;'>
         <h3 class='modal-title'>{% trans "Login" %}</h3>
         <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
