@@ -1,4 +1,4 @@
-{% load static sekizai_tags i18n %}
+{% load static sekizai_tags i18n authentication %}
 <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -8,26 +8,46 @@
         <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div id='loginModalBody' class='modal-body'>
-        <p id='loginMessage'></p>
-        <form action="/accounts/login/" method="post" class='form-floating'>
-          {% csrf_token %}
-          <div class='form-floating mb-3'>
-            <input type="email" name="login" autocomplete="email" class="form-control textinput textInput" placeholder='Email' label="email" required="" id="id_login">
-            <label for="id_login" class="form-label requiredField">Email</label>
-          </div><div class='form-floating mb-3'>
-            <input type="password" name="password" autocomplete="current-password" class="form-control textinput textInput"  placeholder="Password" label='password' required="" id="id_password">
-            <label for="id_password" class="form-label requiredField">Password</label>
-          </div><div class='form-check mb-3'>
-            <input type="checkbox" name="remember" class="form-check-input" id="id_remember">
-            <label for="id_remember" class="form-check-label">Remember Me</label>
-          </div>
-          <p><a href="{% url 'account_reset_password' %}">Lost password?</a></p>
-        </div>
+        <p class='mb-3'>Log in using the details you signed up with</p>
+      {% authentication_form "login" %}
+        {% blocktrans %}
+          <p class='small'>
+            <a href="#forgotPasswordModal" data-bs-target="#forgotPasswordModal" data-bs-toggle="modal" data-bs-dismiss="modal">Forgot your password</a>
+            or 
+            <a href="#createAccountModal" data-bs-target="#createAccountModal" data-bs-toggle="modal" data-bs-dismiss="modal">don't have an account yet?</a>
+          </p>
+        {% endblocktrans %}      
         <div class="modal-footer">
-          <button type='button' class="btn btn-secondary" data-bs-target="#createAccountModal" data-bs-toggle="modal" data-bs-dismiss="modal">Register</button>
-          <input type="submit" name="submit" value="Login" class="btn btn-primary">
+          <input form='loginForm' type="submit" name="submit" value="Login" class="btn btn-primary">
         </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>
+
+
+{% addtoblock "js" %}<script>
+
+$("#loginForm").submit(function(e) {
+
+  e.preventDefault();
+  var form = $(this);
+
+  $.post({
+      url: form.attr('action'),
+      data: form.serialize(),
+      success: function(data)
+      {
+        location.href = '/';
+        window.location.reload(true);
+      },
+      error: function(data)
+      {
+        form.find('.error-message').show()
+        form.find('.success-message').show()
+        form.replaceWith(data.responseJSON.form)
+      },
+  });
+});
+
+</script>{% endaddtoblock %}

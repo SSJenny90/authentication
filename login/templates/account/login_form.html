@@ -1,9 +1,0 @@
-{% load i18n crispy_forms_tags socialaccount %}
-
-<div class='card'>
-  <h3 class='card-header'>{% trans "Login" %}</h3>
-  <div class='card-body'>
-      {% crispy form %}  
-    <p><a href="{% url 'account_reset_password' %}">Lost password?</a></p>
-  </div>
-</div>
