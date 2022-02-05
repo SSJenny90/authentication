@@ -8,11 +8,10 @@
         <h3 class='modal-title'>{% trans "Register" %}</h3>
         <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div id='signupModalBody' class='modal-body'>
+      <div class='modal-body'>
         <p class='mb-3'>Register for an account!</p>
-        {% authentication_form "signup" %}
+          {% authentication_form "signup" %}
         <div class="modal-footer">
-          <button type='button' class="btn btn-secondary" data-bs-target="#createAccountModal" data-bs-toggle="modal" data-bs-dismiss="modal">Register</button>
           <input form='signupForm' type="submit" name="submit" value="{% trans "Confirm" %}" class="btn btn-primary">
         </div>
       </div>
@@ -21,16 +20,16 @@
 </div>
 
 {% addtoblock "js" %}<script>
-  $("#signupForm").submit(function(e) {
+  $("#signupForm").on('submit', function(e) {
     e.preventDefault();
+
     var form = $(this);
     $.post({
         url: form.attr('action'),
         data: form.serialize(),
         success: function(data)
         {
-          location.href = '/';
-          window.location.reload(true);
+          $("#createAccountModal .modal-body").replaceWith(data.html)
         },
         error: function(data)
         {

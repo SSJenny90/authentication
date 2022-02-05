@@ -7,12 +7,12 @@
         <h3 class='modal-title'>{% trans "Login" %}</h3>
         <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div id='loginModalBody' class='modal-body'>
+      <div class='modal-body'>
         <p class='mb-3'>Log in using the details you signed up with</p>
       {% authentication_form "login" %}
         {% blocktrans %}
           <p class='small'>
-            <a href="#forgotPasswordModal" data-bs-target="#forgotPasswordModal" data-bs-toggle="modal" data-bs-dismiss="modal">Forgot your password</a>
+            <a href="#resetPasswordModal" data-bs-target="#resetPasswordModal" data-bs-toggle="modal" data-bs-dismiss="modal">Forgot your password</a>
             or 
             <a href="#createAccountModal" data-bs-target="#createAccountModal" data-bs-toggle="modal" data-bs-dismiss="modal">don't have an account yet?</a>
           </p>

@@ -1,6 +1,4 @@
 from django import template
-from user.forms import CustomLoginForm, CustomSignUpForm
-from allauth.account.forms import ResetPasswordForm
 from django.conf import settings
 from allauth.utils import get_form_class
 from crispy_forms.utils import render_crispy_form

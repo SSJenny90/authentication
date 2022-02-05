@@ -1,0 +1,40 @@
+{% load static sekizai_tags i18n authentication %}
+
+<div id="addEmailModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addEmailModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <img src="{% static "collection/images/MB_logo.svg" %}" alt="" class='pe-2' style='max-height:1.5em;'>
+        <h3 class='modal-title'>{% trans "Change Password" %}</h3>
+        <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class='modal-body'>
+        {% comment %} <p class='mb-3'>Register for an account!</p> {% endcomment %}
+        {% authentication_form "add_email" %}
+        <div class="modal-footer">
+          <input form='signupForm' type="submit" name="submit" value="{% trans "Confirm" %}" class="btn btn-primary">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% addtoblock "js" %}<script>
+  $("#changePasswordModal").submit(function(e) {
+    e.preventDefault();
+    var form = $(this);
+    $.post({
+        url: form.attr('action'),
+        data: form.serialize(),
+        success: function(data)
+        {
+          location.href = '/';
+          window.location.reload(true);
+        },
+        error: function(data)
+        {
+          form.replaceWith(data.responseJSON.form)
+        },
+    });
+  });
+    </script>{% endaddtoblock %}
