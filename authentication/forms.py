@@ -9,7 +9,6 @@ from allauth.socialaccount.forms import SignupForm as SocialSignUp
 from django.urls import reverse
 from crispy_bootstrap5.bootstrap5 import FloatingField
 from crispy_forms.layout import Field
-from core.widgets import CustomCheckbox
 
 class UserAdminCreationForm(UserCreationForm):
 
@@ -35,7 +34,7 @@ class LoginForm(auth_forms.LoginForm):
         self.helper.layout = Layout(
             FloatingField('login', label='email'),
             FloatingField('password', label='password'),
-            CustomCheckbox('remember'),
+            Field('remember', template='forms/checkbox.html'),
         )
 
 class SignUpForm(auth_forms.SignupForm):
