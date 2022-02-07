@@ -1,6 +1,6 @@
 AUTH_USER_MODEL = 'user.User'
 
-ACCOUNT_ADAPTER = 'login.adapter.AuthenticationAdapter'
+ACCOUNT_ADAPTER = 'authentication.adapter.AuthenticationAdapter'
 
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/accounts/login/'

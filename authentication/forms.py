@@ -9,10 +9,7 @@ from allauth.socialaccount.forms import SignupForm as SocialSignUp
 from django.urls import reverse
 from crispy_bootstrap5.bootstrap5 import FloatingField
 from crispy_forms.layout import Field
-
-class CustomCheckbox(Field):
-    """Properly renders the bootstrap 5 checkbox"""
-    template = 'forms/checkbox.html'
+from core.widgets import CustomCheckbox
 
 class UserAdminCreationForm(UserCreationForm):
 

@@ -24,7 +24,7 @@ class AuthenticationAdapter(DefaultAccountAdapter):
                     status = 200
                     self.add_message(request, messages.SUCCESS, "account/messages/email_confirmation_resend.txt")
 
-                    resp['html'] = render_to_string("login/components/form_success.html", {'messages': messages.get_messages(request)}).strip()
+                    resp['html'] = render_to_string("authentication/components/form_success.html", {'messages': messages.get_messages(request)}).strip()
                 else:
                     status = 400
                     resp['form'] = render_crispy_form(form, context=csrf(request))
