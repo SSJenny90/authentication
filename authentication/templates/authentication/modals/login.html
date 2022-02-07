@@ -8,15 +8,15 @@
         <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class='modal-body'>
-        <p class='mb-3'>Log in using the details you signed up with</p>
-      {% authentication_form "login" %}
-        {% blocktrans %}
+        <p class='mb-3'>{% trans "Log in using the details you signed up with" %}</p>
+        {% authentication_form "login" %}
+        {% comment %} {% blocktrans %} {% endcomment %}
           <p class='small'>
-            <a href="#resetPasswordModal" data-bs-target="#resetPasswordModal" data-bs-toggle="modal" data-bs-dismiss="modal">Forgot your password</a>
+            {% auth_link 'forgot_password' "Forgot your password" %}
             or 
-            <a href="#createAccountModal" data-bs-target="#createAccountModal" data-bs-toggle="modal" data-bs-dismiss="modal">don't have an account yet?</a>
+            {% auth_link 'register' "don't have an account yet?" %}
           </p>
-        {% endblocktrans %}      
+        {% comment %} {% endblocktrans %}       {% endcomment %}
         <div class="modal-footer">
           <input form='loginForm' type="submit" name="submit" value="Login" class="btn btn-primary">
         </div>
