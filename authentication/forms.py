@@ -3,12 +3,14 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib import auth
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Row, Column
+from crispy_forms.layout import Layout, Row, Column, Submit
 from allauth.account import forms as auth_forms
 from allauth.socialaccount.forms import SignupForm as SocialSignUp
 from django.urls import reverse
 from crispy_bootstrap5.bootstrap5 import FloatingField
-from crispy_forms.layout import Field
+from crispy_forms.layout import Field, HTML
+from django.utils.translation import gettext_lazy as _
+import allauth.account.urls
 
 class UserAdminCreationForm(UserCreationForm):
 
@@ -66,13 +68,14 @@ class AddEmailForm(auth_forms.AddEmailForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
         self.helper = FormHelper(self)
+        self.helper.form_show_labels = False
         self.helper.form_method = 'POST'
         self.helper.form_action = reverse('account_email')
         self.helper.form_id = 'addEmailForm'
         self.helper.layout = Layout(
-            FloatingField('email'),
+            FloatingField('email', placeholder=''),
+            Submit('action_add', value='Submit', hidden=True),
         )
 
 class ChangePasswordForm(auth_forms.ChangePasswordForm):
@@ -85,7 +88,9 @@ class ChangePasswordForm(auth_forms.ChangePasswordForm):
         self.helper.form_action = reverse('account_change_password')
         self.helper.form_id = 'ChangePasswordForm'
         self.helper.layout = Layout(
+            HTML(f'<p class="mb-3">{_("Please confirm your current password:")}</p>'),
             FloatingField('oldpassword'),
+            HTML(f'<p class="mb-3">{_("Your new password:")}</p>'),
             FloatingField('password1'),
             FloatingField('password2'),
         )
