@@ -47,5 +47,5 @@ ACCOUNT_FORMS = {
 
 SOCIALACCOUNT_FORMS = {
     'disconnect': 'allauth.socialaccount.forms.DisconnectForm',
-    'signup': 'user.forms.SocialSignupForm',
+    'signup': 'authentication.forms.SocialSignupForm',
 }
