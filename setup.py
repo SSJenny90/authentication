@@ -22,7 +22,7 @@ setup(
     url=REPO_URL,
     install_requires=[
         "Django>=3,<4",    
-        "django-all-auth",   
+        "django-allauth",   
         ],
     keywords='scientific django',
     classifiers=[
