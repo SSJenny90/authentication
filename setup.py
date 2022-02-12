@@ -3,7 +3,7 @@
 
 import os
 from setuptools import setup, find_packages
-from core import __version__
+from authentication import __version__
 
 REPO_URL = "https://github.com/SSJenny90/authentication"
 
