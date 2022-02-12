@@ -22,7 +22,9 @@ setup(
     url=REPO_URL,
     install_requires=[
         "Django>=3,<4",    
-        "django-allauth",   
+        "django-allauth",
+        "django-crispy-forms",
+        "crispy_bootstrap5",
         ],
     keywords='scientific django',
     classifiers=[
