@@ -3,14 +3,8 @@
 <div id="deactivateAccountModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deactivateAccountModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header bg-light">
-        <img src="{% static "collection/images/MB_logo.svg" %}" alt="" class='pe-2' style='max-height:1.5em;'>
-        <h3 class='modal-title'>{% trans "Change Password" %}</h3>
-        <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+      {% include 'core/modals/header.html' with header='Deactivate Account' %}
       <div class='modal-body'>
-        {% comment %} <p class='mb-3'>Register for an account!</p> {% endcomment %}
-        {% comment %} {% authentication_form "disconnect" %} {% endcomment %}
         <div class="modal-footer">
           <input form='signupForm' type="submit" name="submit" value="{% trans "Confirm" %}" class="btn btn-primary">
         </div>

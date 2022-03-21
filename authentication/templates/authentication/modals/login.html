@@ -1,22 +1,16 @@
-{% load static sekizai_tags i18n authentication %}
+{% load static sekizai_tags i18n authentication solo_tags %}
 <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header bg-light">
-        <img src="{% static "collection/images/MB_logo.svg" %}" alt="" class='pe-2' style='max-height:1.5em;'>
-        <h3 class='modal-title'>{% trans "Login" %}</h3>
-        <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+      {% include 'core/modals/header.html' with header='Login' %}
       <div class='modal-body'>
         <p class='mb-3'>{% trans "Log in using the details you signed up with" %}</p>
         {% authentication_form "login" %}
-        {% comment %} {% blocktrans %} {% endcomment %}
           <p class='small'>
             {% auth_link 'forgot_password' "Forgot your password" %}
             or 
             {% auth_link 'register' "don't have an account yet?" %}
           </p>
-        {% comment %} {% endblocktrans %}       {% endcomment %}
         <div class="modal-footer">
           <input form='loginForm' type="submit" name="submit" value="Login" class="btn btn-primary">
         </div>
